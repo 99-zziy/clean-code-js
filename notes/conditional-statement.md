@@ -53,7 +53,7 @@ return "hello" + name
 
 ```
 
-truthly falsy를 사용하면 좀 더 간결하게 표현할수있다.
+**truthly falsy를 사용하여 좀 더 간결하게 표현해보자!!**
 
 
 
