@@ -120,3 +120,61 @@ function getUserType(type) {
 ```
 
 **이렇게 활용할수 있을지 몰랐다. 직관적이고 간결하게 보여지므로 앞으로 switch문이 많아질 때 이렇게 사용해야겠다.**
+
+## 📌 4. Object Destructuring Assignment
+
+```
+function Person(name, age, location) {
+  this.name = name;
+  this.age = age;
+  this.location = location;
+}
+
+const marco = new Person('Marco', 30, 'Korea');
+```
+
+위와 같은 코드를 아래 코드처럼 구조분해할당을 활용하여 리팩토링 할 수 있다.  
+함수의 매개변수를 객체로 받고, 인수를 객체로 전달한다면, 전달하는 매개변수를 명시적으로 쓸 수 있으며 매개변수의 key만 같으면 되므로 매개변수의 순서가 다르더라도 상관 없다.  
+
+```
+function Person({ name, age, location }) {
+  this.age = age;
+  this.name = name;
+  this.location = location;
+}
+
+const marco = new Person({ name: 'Marco', age: 30, location: 'Korea' });
+```
+
+리액트에서 사용예시도 살펴보자
+
+```
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>
+}
+
+```
+
+```
+function Welcome({name}) {
+  return <h1>Hello, {name}</h1>
+}
+
+```
+
+**이렇게 바꿀수 있다. 사람마다 어떤게 가독성이 좋은지는 다르겠지만 prop를 계속 안써도 된다는 점에서 저렇게 사용하는것도 좋을것 같다. 그리고 어떤 props가 있는지 한눈에 보이는것도 더 좋은것 같다.**
+
+## 📌 5. Object.freeze()
+
+```
+const o1 = {
+    name: 'kim',
+    score: [1, 2]
+}
+Object.freeze(o1);
+```
+
+Object.freeze를 사용하면 객체를 불변(immutability)하게 바꿔줄 수 있다.  
+
+그리고 Object.freeze 는 값 자체를 못바꾸게 하는 것이고, const는 이름이 가리키는 값을 다른 것으로 바꾸지 못하게 하는 것이다.  
+이 두개를 병행해서 사용하여 훨씬 더 강력하게 이뮤터블해야 할 값을 강력하게 규제할 수 있다.  
